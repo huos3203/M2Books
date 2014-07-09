@@ -171,7 +171,7 @@
     <dependency>
     	<groupId>net.rile</groupId>
     	<artifactId>rile</artifactId>
-    	<version>2</version>
+    	<version>1</version>
     </dependency>
     <dependency>
     	<groupId>net.exexcel</groupId>
@@ -187,6 +187,16 @@
     	<groupId>org.stringtemplate.v4</groupId>
     	<artifactId>ST</artifactId>
     	<version>4.0.3</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.microsoft.sqlserver.jdbc</groupId>
+    	<artifactId>sqljdbc</artifactId>
+    	<version>4</version>
+    </dependency>
+    <dependency>
+    	<groupId>xml-apis</groupId>
+    	<artifactId>xml-apis</artifactId>
+    	<version>2.0.0</version>
     </dependency>
   </dependencies>
 </project>
