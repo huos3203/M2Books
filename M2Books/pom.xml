@@ -63,11 +63,6 @@
     	<classifier>swfheader</classifier>
     </dependency>
     <dependency>
-    	<groupId>com.forfuture</groupId>
-    	<artifactId>forfuture</artifactId>
-    	<version>1</version>
-    </dependency>
-    <dependency>
     	<groupId>net.sourceforge.htmlunit</groupId>
     	<artifactId>htmlunit</artifactId>
     	<version>2.13</version>
@@ -76,6 +71,11 @@
     	<groupId>com.belerweb</groupId>
     	<artifactId>pinyin4j</artifactId>
     	<version>2.5.0</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.forfuture</groupId>
+    	<artifactId>forfuture</artifactId>
+    	<version>1</version>
     </dependency>
   </dependencies>
 </project>
