@@ -18,6 +18,11 @@ var ioc = {
 					type : 'nutz.demo.ioc.book.Pet', // 类型
 					singleton : false, 			     // 是否为单件,为false时,那么它每次都会生成一个新的实例
 					args : [ 'XiaoHei' ], 			 // 构造函数参数 
+					
+					events : {						 // 通过实现一个触发器,IocEventTrigger方法监听对象事件
+						fetch : 'nutz.demo.ioc.book.OnFetchPet'
+						},
+				  
 					fields : {
 						birthday : '2009-11-3 08:02:14',
 						friend : {
