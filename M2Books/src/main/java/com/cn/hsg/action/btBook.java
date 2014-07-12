@@ -5,9 +5,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.text.StringContent;
+
+import org.nutz.dao.Dao;
 import org.nutz.el.opt.custom.Trim;
+import org.nutz.ioc.Ioc;
+import org.nutz.ioc.impl.NutIoc;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
+import org.nutz.ioc.loader.json.JsonLoader;
 import org.nutz.log.Log;
 import org.nutz.log.Logs;
 
@@ -16,21 +22,34 @@ import com.cn.hsg.pojo.Notification;
 import com.cn.hsg.tools.Tools;
 
 @IocBean
-public class CopyOfTxt {
+public class btBook {
 
 	
-	@Inject("refer:notifDao")
+//	@Inject("refer:notifDao")
 	private static NotifDao notifDao;
-	@Inject("refer:notification")
+//	@Inject("refer:notification")
 	private static Notification notif;
 	
+
 	private static final Log log = Logs.get();
 	/**
 	 * @param args
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws IOException {
-		Tools tools = new Tools();
+		
+		args = new String[]{"ioc/btBook.js","ioc/dao.js"};
+		JsonLoader js = new JsonLoader(args);
+    	//将配置信息保存到dao.xml,并存放于src文件夹下
+    	Ioc ioc = new NutIoc(js);
+//    	DataSource ds = ioc.get(DataSource.class);
+//    	Dao dao = new NutDao(ds); //如果已经定义了dao,那么改成dao =
+
+    	ioc.get(btBook.class,"btBook");
+		
+		log.info("btBook:"+"notifDao:"+notifDao+"notif"+notif+"dao:"+notifDao.dao);
+		
+//		Tools tools = new Tools();
 		File f=new File("~/图书/");
         f.mkdirs();
 		FileWriter fw=new FileWriter("~/图书/搜狐书本地址11.txt",false);

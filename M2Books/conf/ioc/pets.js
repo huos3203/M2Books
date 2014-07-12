@@ -1,12 +1,8 @@
-/*
-* 开始写上 var ioc = { , 是为了利用 eclipse 的 javascript 编辑器的自动
-格式化功能 
-*/
 var ioc = { 
 		/*
-		 * 默认的,你仅仅需要直接声明每个字段的值即可,Nutz.Ioc 会为你转 型
+		 * 默认的,你仅仅需要直接声明每个字段的值即可,Nutz.Ioc 会为你转型
 		 */ 
-		xiaobai : {
+		btBook : {
 					name : 'XiaoBai',
 					birthday : '2009-10-25 15:23:40' 
 				  },
@@ -21,7 +17,10 @@ var ioc = {
 					
 					events : {						 // 通过实现一个触发器,IocEventTrigger方法监听对象事件
 						fetch : 'nutz.demo.ioc.book.OnFetchPet'
-						fetch : 'onFetch'
+//						fetch : 'onFetch'            //监听对象的第二种方法:通过对象自身的一个函数 ,这个函数必须为 public,并且不能有参数
+//							* create: 对象创建时触发
+//							* fetch: 对象获取时触发
+//							* depose: 对象销毁时触发
 						},
 				  
 					fields : {
