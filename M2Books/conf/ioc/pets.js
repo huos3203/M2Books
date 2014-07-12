@@ -21,6 +21,7 @@ var ioc = {
 					
 					events : {						 // 通过实现一个触发器,IocEventTrigger方法监听对象事件
 						fetch : 'nutz.demo.ioc.book.OnFetchPet'
+						fetch : 'onFetch'
 						},
 				  
 					fields : {

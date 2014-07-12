@@ -50,5 +50,7 @@ public class Pet {
 		this.fetchCount = fetchCount;
 	}
 	
-	
+	public void onFetch() { 
+		this.fetchCount++;
+	}
 }
