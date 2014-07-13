@@ -19,7 +19,7 @@ var ioc = {
 	   type : "com.cn.hsg.action.btBook",
 	   fields : {
 		   notifDao : {refer:'notifDao'},
-		   notif : {refer : 'notif' }
+		   notif : {refer : 'notif'}
 	   }
    }
 };
