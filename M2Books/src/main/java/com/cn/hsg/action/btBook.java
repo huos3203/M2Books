@@ -9,6 +9,8 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 
+import javax.print.Doc;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -41,6 +43,10 @@ public class btBook {
 
 	private static Ioc ioc;
 	private static Log log = Logs.getLog(btBook.class);
+	
+	//最大页数
+	private static int maxPagenum;
+	
 	/**
 	 * @param args
 	 * @throws IOException 
@@ -73,7 +79,6 @@ public class btBook {
 			ioc.get(btBook.class);
 			//使用混合加载器ComboIocLoader,以下对象无法@Inject方法注入该类中，故有以下代替：
 			btBooksDao = ioc.get(btBooksDao.class);
-			btBooks = ioc.get(btBooks.class);
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -87,22 +92,30 @@ public class btBook {
         f.mkdirs();
 		FileWriter fw=new FileWriter("~/图书/搜狐书本地址11.txt",false);
 		
-		String keyword = "English";
+		String keyword = "国旗";
 		int z = 0;
-		for (int i = 38; i <= 100; i++) {
+		for (int i = 41; i <= maxPagenum; i++) {
 			z = i + 1;
-			String url1="http://btdigg.org/search?q="+"少女"+"&p="+ z; //搜狐图书首地址
+			String url1="http://btdigg.org/search?q="+keyword+"&p="+ z; //搜狐图书首地址
 			log.info("获取搜狐读书书籍路径："+url1);
 			Document doc = null;
 			try {
 				doc = Jsoup.connect(url1).get();
+				log.info("Jsoup获取到的网页源码:"+doc.outerHtml());
 			} catch (IOException e) {
 				log.info("获取搜狐读书书籍路径失败："+url1);
 				e.printStackTrace();
 			}
-			btBooks.setPage(z+"");
-			btBooks.setKeyword(keyword);
-			btBooksDao.insertT(makeBtBooks(doc.outerHtml()));
+
+			ArrayList<btBooks> list = makeBtBooks(doc.outerHtml(),keyword,z+"");
+			
+			int num = list.size();
+			if (num == 0) {
+				//源码匹配为空时
+				continue;
+			}
+			
+			btBooksDao.insertT(list);
 		}		
 		fw.close();
 		log.info("操作成功！！！");
@@ -114,15 +127,23 @@ public class btBook {
 	 * @param htmlString
 	 * @return
 	 */
-	public static ArrayList<btBooks> makeBtBooks(String htmlString) {
+	public static ArrayList<btBooks> makeBtBooks(String htmlString,String keyword,String page) {
 		
 		Tools tools = new Tools();
 		ArrayList<String> arlist = new ArrayList<String>();
 		ArrayList<btBooks> btBooksList = new ArrayList<btBooks>();
 		arlist = tools.getByREX(htmlString, "<td class=\"torrent_name\">.+?<pre");
+		String pageNum = tools.getStrByREX(htmlString, "<td>\\d{1,3}/\\d{1,3}</td>");
+		pageNum = pageNum.replaceAll("\\d{1,3}/", "");
+		maxPagenum = Integer.parseInt(pageNum);
+		log.info("本页匹配到的数据个数:"+arlist.size()+"\n最大页数："+maxPagenum);
 //		Elements els = doc.getElementsByTag("a");
 		for (int j = 0; j < arlist.size(); j++) {
-//			log.info("页码："+i+"中有"+arlist.size()+"个");
+			
+			btBooks = ioc.get(btBooks.class);
+			btBooks.setKeyword(keyword);
+			btBooks.setPage(page);
+			
 			String btname = tools.getStrByREX(arlist.get(j), "<a href=\"/search[^>]+>.+?</a>");
 			btname = tools.Html2Text(btname);
 			

@@ -20,16 +20,18 @@ public class btBooksDao {
 	@Inject
 	private Dao dao;
 	
+	private Log logger = Logs.getLog(btBooksDao.class);
 	//重生时，添加关系表id:LINKID , Content:通知内容
 	public boolean insertT(ArrayList<btBooks>  btBookslist) {
 		
-//		log.info("新建通知消息："+notif.getLinkID());
+		logger.info("将插入数据的数据量："+btBookslist.size());
 //		log.info("dao:"+dao);
 		boolean suc = false;
 		dao.create(btBooks.class, false);
 		Object tt = dao.insert(btBookslist);
 		if (tt!=null) {
 			suc = true;
+			logger.info("数据成功录入数据库中");
 		}
 		return suc;
 	}
