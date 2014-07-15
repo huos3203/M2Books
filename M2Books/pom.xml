@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.cn.hsg</groupId>
-  <artifactId>m2Nutz</artifactId>
+  <artifactId>m2Books</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>m2Nutz</name>
+  <name>m2Books</name>
   <url>http://maven.apache.org</url>
 
   <properties>
