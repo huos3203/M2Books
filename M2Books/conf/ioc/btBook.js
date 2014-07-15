@@ -6,11 +6,11 @@ var ioc = {
 		/*
 		 * 默认的,你仅仅需要直接声明每个字段的值即可,Nutz.Ioc 会为你转 型
 		 */ 
-   notif : {
-			type:"com.cn.hsg.pojo.Notification"
+   btBooks : {
+			type:"com.cn.hsg.pojo.btBooks"
 	},
-   notifDao : {
-	   type : "com.cn.hsg.dao.NotifDao",
+	btBooksDao : {
+	   type : "com.cn.hsg.dao.btBooksDao",
 	   fields : {
 		   dao : { refer : 'dao'}
 	   }
@@ -18,8 +18,8 @@ var ioc = {
    btBook : {
 	   type : "com.cn.hsg.action.btBook",
 	   fields : {
-		   notifDao : {refer:'notifDao'},
-		   notif : {refer : 'notif'}
+		   notifDao : {refer:'btBooksDao'},
+		   notif : {refer : 'btBooks'}
 	   }
    }
 };

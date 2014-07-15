@@ -10,7 +10,7 @@ import org.nutz.ioc.loader.json.JsonLoader;
 import org.nutz.ioc.loader.xml.XmlIocLoader;
 
 import com.cn.hsg.pojo.Books;
-import com.cn.hsg.pojo.Notification;
+import com.cn.hsg.pojo.btBooks;
 
 /**
  * Hello world!
@@ -28,7 +28,7 @@ public class App
 
     	ioc.get(Dao.class);
     	dao.create(Books.class, true);
-    	dao.create(Notification.class, false);
+    	dao.create(btBooks.class, false);
 //    	Books books = new Books();
 //    	dao.insert(books);
     	ioc.depose(); //关闭Ioc容器

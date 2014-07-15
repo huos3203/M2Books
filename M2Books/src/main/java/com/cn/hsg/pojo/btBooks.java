@@ -8,69 +8,103 @@ import org.nutz.dao.entity.annotation.Table;
 import org.nutz.ioc.loader.annotation.IocBean;
 
 @IocBean(singleton=false)
-@Table("tb_notification")
-public class Notification {
+@Table("btbooks")
+public class btBooks {
 
 	@Id
-	@Column("noticeID")
-	private int noticeID;
+	@Column("btId")
+	private int btId;
 	
-	@Column("LINKID")
-	@ColDefine(type=ColType.INT)
-	private int linkID;
+	@Column("btname")
+	@ColDefine(type=ColType.TEXT)
+	private String btname;
 	
-	@Column("Content")
-	@ColDefine(type=ColType.VARCHAR,width = 256)
-	private String content;
+	@Column("bturl")
+	@ColDefine(type=ColType.TEXT)
+	private String bturl;
 
-	@Column("noticeType")
-	@ColDefine(type=ColType.INT)
-	private int noticeType;
-//	@One(target=NotificationRelation.class,field="LINKID") 
-//	private NotificationRelation notificRelation;
+	@Column("btsize")
+	@ColDefine(type=ColType.VARCHAR,width=200)
+	private String btsize;
 	
+	@Column("filecount")
+	@ColDefine(type=ColType.VARCHAR,width=200)
+	private String filecount;
 	
+	@Column("downnum")
+	@ColDefine(type=ColType.VARCHAR,width=200)
+	private String downnum;
 	
-
-	public int getNoticeID() {
-		return noticeID;
-	}
-
-	public void setNoticeID(int noticeID) {
-		this.noticeID = noticeID;
-	}
-
-	public int getLinkID() {
-		return linkID;
-	}
-
-	public void setLinkID(int linkID) {
-		this.linkID = linkID;
-	}
-
+	@Column("page")
+	@ColDefine(type=ColType.VARCHAR,width=200)
+	private String page;
 	
-	public int getNoticeType() {
-		return noticeType;
+	@Column("keyword")
+	@ColDefine(type=ColType.VARCHAR,width=100)
+	private String keyword;
+
+	public int getBtId() {
+		return btId;
 	}
 
-	public void setNoticeType(int noticeType) {
-		this.noticeType = noticeType;
+	public void setBtId(int btId) {
+		this.btId = btId;
 	}
 
-//	public NotificationRelation getNotificRelation() {
-//		return notificRelation;
-//	}
-//
-//	public void setNotificRelation(NotificationRelation notificRelation) {
-//		this.notificRelation = notificRelation;
-//	}
-
-	public String getContent() {
-		return content;
+	public String getBtname() {
+		return btname;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setBtname(String btname) {
+		this.btname = btname;
+	}
+
+	public String getBturl() {
+		return bturl;
+	}
+
+	public void setBturl(String bturl) {
+		this.bturl = bturl;
+	}
+
+	public String getBtsize() {
+		return btsize;
+	}
+
+	public void setBtsize(String btsize) {
+		this.btsize = btsize;
+	}
+
+	public String getFilecount() {
+		return filecount;
+	}
+
+	public void setFilecount(String filecount) {
+		this.filecount = filecount;
+	}
+
+	public String getDownnum() {
+		return downnum;
+	}
+
+	public void setDownnum(String downnum) {
+		this.downnum = downnum;
+	}
+
+	public String getPage() {
+		return page;
+	}
+
+	public void setPage(String page) {
+		this.page = page;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	
 	
