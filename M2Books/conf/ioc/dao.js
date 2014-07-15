@@ -62,7 +62,7 @@ var ioc = {
 			
 			fields:{
 				driverClassName:"com.mysql.jdbc.Driver",
-				url:"jdbc:mysql://127.0.0.1:3306/ebooks?useUnicode=true&characterEncoding=utf-8",
+				url:"jdbc:mysql://192.168.81.169:3306/ebooks?useUnicode=true&characterEncoding=utf-8",
 				username : 'root',
 				password : ''
 			},
