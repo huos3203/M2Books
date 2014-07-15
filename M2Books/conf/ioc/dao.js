@@ -70,25 +70,14 @@ var ioc = {
 					depose : "close"
 			}
 		},
+		
+		filesql : {  //加载 SQL 文件
+			type : "org.nutz.dao.impl.FileSqlManager",
+			args : [{profile : {file : "all.sqls"}}]
+		},
 		dao : {
 			type : "org.nutz.dao.impl.NutDao",
-			args : [{refer:"dataSource"}]
-		}//,
-//	notif : {
-//			type:"com.cn.hsg.pojo.Notification"
-//	},
-//   notifDao : {
-//	   type : "com.cn.hsg.dao.NotifDao",
-//	   fields : {
-//		   dao : { refer : 'dao'}
-//	   }
-//   },
-//   btBook : {
-//	   type : "com.cn.hsg.action.btBook",
-//	   fields : {
-//		   notifDao : {refer:'notifDao'},
-//		   notif : {refer : 'notif'}
-//	   }
-//   }
+			args : [{refer:"dataSource"},{refer:"filesql"}]
+		}
 		
 };

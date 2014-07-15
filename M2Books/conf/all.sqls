@@ -1,0 +1,16 @@
+alter table btbooks add keyword varchar(200)
+
+--创建视图，达到过滤字段的效果
+CREATE VIEW v_btbooks AS (
+--	SELECT * , taskcount = (SELECT COUNT(id) FROM t_task AS t WHERE t.eid = e.id) FROM t_employee AS e;
+	select btname,bturl from btbooks where btId < 10
+)
+
+--alter view 视图名 as select 语句;
+alter view v_btbooks as select bturl,btname,btsize,downnum from btbooks where btId < 10
+
+
+SELECT bturl,btname,btsize,downnum FROM v_btbooks LIMIT 0, 10
+
+
+SELECT * FROM v_btbooks  limit 10

@@ -21,5 +21,15 @@ var ioc = {
 		   notifDao : {refer:'btBooksDao'},
 		   notif : {refer : 'btBooks'}
 	   }
-   }
+   },
+   
+//	java 转 为 json
+	savetojson : {
+		type : "com.cn.hsg.action.saveToJson",
+		fields : {
+			btBooksDao : {refer:"btBooksDao"}
+		}
+		
+	}
+   
 };
