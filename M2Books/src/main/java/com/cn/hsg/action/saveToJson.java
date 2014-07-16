@@ -1,9 +1,7 @@
 package com.cn.hsg.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.nutz.dao.Dao;
 import org.nutz.ioc.Ioc;
 import org.nutz.ioc.impl.NutIoc;
 import org.nutz.ioc.loader.json.JsonLoader;
@@ -30,7 +28,6 @@ public class saveToJson {
 		//从数据库中读取源数据
 		List<btBooks> btList = btBooksDao.selectTop(10);
 		logger.info("对象转为json为:"+Json.toJson(btList));
-		
 	}
 
 }

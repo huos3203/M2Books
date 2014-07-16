@@ -1,15 +1,24 @@
 package com.cn.hsg.dao;
 
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.naming.ldap.Rdn;
+import javax.security.auth.callback.Callback;
 
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Dao;
 import org.nutz.dao.FieldFilter;
+import org.nutz.dao.Sqls;
 import org.nutz.dao.entity.Record;
+import org.nutz.dao.sql.Sql;
+import org.nutz.dao.sql.SqlCallback;
+import org.nutz.dao.util.cri.SqlExpression;
 import org.nutz.dao.util.cri.Static;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
@@ -97,8 +106,64 @@ public class btBooksDao {
 			
 		});
 		
-		
 		return btlist;
 		
+		/**
+		 * 自定义 SQL
+		 * 
+		 * Sql 对象 -- org.nutz.dao.sql.Sql
+		 * 
+		 * 支持占位符的书写方式
+		 * 变量占位符的定义：正则表达式[$][a-zA-Z0-9_-]
+		 * 参数占位符的定义：正则表达式[@][a-zA-Z0-9_-]
+		 * 
+		 * 回调对象实现接口 org.nutz.dao.sql.SqlCallback
+		 *
+		 *  回调函数的返回值会存放在 Sql 对象中,调用 sql.getResult() 可以直接返回这个对象
+			* sql.getList() 以及 sql.getObject() 方法会泛型安全的替你转型
+			* 如果你的对象类型符合要求,则直接返回,否则会通过 Nutz.Castors 替你转换。
+			* 对于 getList(),泛型参数用来描述集合内部元素的类型
+			sql.getInt() 会安全的替你将结果转成 int,如果它可以被转成 int 的话,以下是我能想到的
+			列表:
+			* 字符串
+			* 各种数字类型 * 字符
+			* 布尔类型
+		 *
+		Sql sql = Sqls.create("select bturl,btname,btsize,downnum FROM $table where downnum > @downnum limit $topNum");
+		sql.vars().set("table","t_abc");
+		sql.vars().set("topNum",topNum);
+		sql.params().set("downnum",5);
+		
+		sql.setCallback(new SqlCallback() {
+			
+			@Override
+			public Object invoke(Connection conn, ResultSet rs, Sql sql)
+					throws SQLException {
+				// TODO Auto-generated method stub
+				List<btBooks> list = new LinkedList<btBooks>();
+				while (rs.next()){
+					btBooks btBooks = new btBooks();
+					btBooks.setBturl(rs.getString("bturl"));
+					btBooks.setBtsize(rs.getString("btsize"));
+					btBooks.setDownnum(rs.getString("downnum"));
+					list.add(btBooks);
+				}
+				return list;
+			}
+		}
+		);
+		dao.execute(sql);
+		return sql.getList(btBooks.class);
+		// Nutz内置了大量回调, 请查看Sqls.callback的属性
+		*/
 	}
 }
+
+
+/**
+ * 动态实体
+ * Map<String,Object> map = new HashMap<String,Object>(); map.put(".table", "t_person");
+	map.put("name", "abc");
+	map.put("age", 18);
+	dao.update(map);
+*/

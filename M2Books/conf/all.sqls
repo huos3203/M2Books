@@ -1,12 +1,23 @@
+/*
+SQL语句的名称 (或者说是键值)：程序可以通过语句的名称获取到某一条或几条SQL语句
+注释 (通常包括在 /* 与 */ 之间)
+SQL文件必须为 "UTF-8" 编码
+只有距离 SQL 语句最近的那一行注释 ,才会被认为是键值  ，其他局域可以添加说明信息等
+*/
+
+/* addColumn_keyword */
 alter table btbooks add keyword varchar(200)
 
---创建视图，达到过滤字段的效果
+/* 创建视图，达到过滤字段的效果*/
+/* creatView_btbooks */
 CREATE VIEW v_btbooks AS (
 --	SELECT * , taskcount = (SELECT COUNT(id) FROM t_task AS t WHERE t.eid = e.id) FROM t_employee AS e;
 	select btname,bturl from btbooks where btId < 10
 )
 
---alter view 视图名 as select 语句;
+/*--alter view 视图名 as select 语句 */
+
+/* alterViewOfV_btbooks*/
 alter view v_btbooks as select bturl,btname,btsize,downnum from btbooks where btId < 10
 
 

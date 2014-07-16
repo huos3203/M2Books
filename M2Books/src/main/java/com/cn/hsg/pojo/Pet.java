@@ -1,5 +1,7 @@
 package com.cn.hsg.pojo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 
 public class Pet {
@@ -17,6 +19,12 @@ public class Pet {
 	public Pet(String name) {
 		this.name = name; 
 	}
+	public static Pet getInstance(ResultSet rs) throws SQLException{
+		Pet pet = new Pet();
+		pet.name = rs.getString("name");
+		pet.birthday =(Calendar) rs.getObject("birthday");
+		return pet;
+		}
 
 	public String getName() {
 		return name;
