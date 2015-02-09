@@ -19,6 +19,15 @@ public class Pet {
 	public Pet(String name) {
 		this.name = name; 
 	}
+	/**
+	 * 如果你的实体对象有一个静态的函数,
+	 * 返回类型的是你的实体对象(有点类似于工厂方法),
+	 * 输入参数是 java.sql.ResultSet, 
+	 * 那么在创建实例的时候,会直接调用你这个方法。
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
 	public static Pet getInstance(ResultSet rs) throws SQLException{
 		Pet pet = new Pet();
 		pet.name = rs.getString("name");

@@ -162,6 +162,8 @@ public class btBooksDao {
 
 /**
  * 动态实体
+ * Map 只要多一个固定的名值对 ".table",那么nutz.dao就能知道要操作的数据库表名
+ * 
  * Map<String,Object> map = new HashMap<String,Object>(); map.put(".table", "t_person");
 	map.put("name", "abc");
 	map.put("age", 18);

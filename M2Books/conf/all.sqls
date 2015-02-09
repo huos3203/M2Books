@@ -3,6 +3,15 @@ SQL语句的名称 (或者说是键值)：程序可以通过语句的名称获�
 注释 (通常包括在 /* 与 */ 之间)
 SQL文件必须为 "UTF-8" 编码
 只有距离 SQL 语句最近的那一行注释 ,才会被认为是键值  ，其他局域可以添加说明信息等
+
+在构造时加载
+Dao dao = new NutDao(datasource,new FileSqlManager("demo/sqls/all.sqls")); 
+System.out.println(dao.sqls().count());
+
+在构造之后的任何时加载
+Dao dao = new NutDao(datasource); 
+((NutDao)dao).setSqlManager(new FileSqlManager("demo/sqls/all.sqls")); 
+System.out.println(dao.sqls().count());
 */
 
 /* addColumn_keyword */
@@ -25,3 +34,6 @@ SELECT bturl,btname,btsize,downnum FROM v_btbooks LIMIT 0, 10
 
 
 SELECT * FROM v_btbooks  limit 10
+
+/*ordbyBtsize*/
+select * from btbooks order by btsize asc

@@ -82,5 +82,15 @@
     	<artifactId>log4j</artifactId>
     	<version>1.2.14</version>
     </dependency>
+    <dependency>
+    	<groupId>com.github.chrisprice</groupId>
+    	<artifactId>phonegap-build-maven-plugin</artifactId>
+    	<version>0.0.6</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.github.chrisprice</groupId>
+    	<artifactId>phonegap-build-api</artifactId>
+    	<version>0.0.6</version>
+    </dependency>
   </dependencies>
 </project>
