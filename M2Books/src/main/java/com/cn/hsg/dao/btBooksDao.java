@@ -128,6 +128,17 @@ public class btBooksDao {
 			* 字符串
 			* 各种数字类型 * 字符
 			* 布尔类型
+			* 
+			* 
+			*
+		 *另一种回调方法:
+		 *  只要你保证你的 Master 类声明了 @Table 并且每个字段上的 @Column 可以同你的 ResultSet 配置起来,那么，上面的代码可以很方便的帮你获取一个 List<Master>.
+		 *  Sql.create("SELECT m.* FROM master m JOIN detail d ON m.d_id=d.d_id WHERE d.name='aa'");
+			sql.setCallback(Sqls.callback.entities());
+			sql.setEntity(dao.getEntity(Master.class));
+			dao.execute(sql);
+			List<Master> list = sql.getList(Master.class);
+		 *
 		 *
 		Sql sql = Sqls.create("select bturl,btname,btsize,downnum FROM $table where downnum > @downnum limit $topNum");
 		sql.vars().set("table","t_abc");

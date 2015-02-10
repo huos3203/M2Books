@@ -71,7 +71,7 @@ var ioc = {
 			}
 		},
 		
-		filesql : {  //加载 SQL 文件
+		filesql : {  //加载 SQL 文件，如果是目录，可加载目录下所有.sqls文件
 			type : "org.nutz.dao.impl.FileSqlManager",
 			args : [{profile : {file : "all.sqls"}}]
 		},
