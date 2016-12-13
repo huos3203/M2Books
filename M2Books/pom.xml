@@ -22,9 +22,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-    	<groupId>org.nutz</groupId>
-    	<artifactId>nutzdoc</artifactId>
-    	<version>1.16</version>
+    	<groupId>fakepath</groupId>
+    	<artifactId>nutz</artifactId>
+    	<version>1.b.51</version>
     </dependency>
     <dependency>
     	<groupId>mysql</groupId>
